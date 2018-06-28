@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<title>Examples</title>
+	<meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0,user-scalable=no" name="viewport"/>
+	<meta name="description" content="">
+	<meta name="keywords" content="">
+    <link rel="stylesheet" href="dist/range.css">
+</head>
+<style type="text/css">
+	*{margin: 0;padding: 0;box-sizing: border-box;}
+    body{padding: 50px;}
+	.actual{font-size: 25px; font-weight: bold;color: #888}
+    hr{margin: 30px 0;display: block;}
+    .rangeNumSpan{padding: 4px 10px; background: #000;border-radius: 4px;color: #fff;font-size: 12px; position: absolute; left: 50%;top: -38px;transform: translate3d(-50%,0,0);-webkit-transform: translate3d(-50%,0,0); opacity: 1;-webkit-transition: all 0.4s ease;-o-transition: all 0.4s ease;transition: all 0.4s ease;   }
+    .rangeNumSpan:after{content: '';display: block;width: 0; position: absolute; left: 50%; bottom: -13px; transform: translate3d(-50%,0,0);-webkit-transform: translate3d(-50%,0,0);height: 0;border-width: 7px;border-color: #000 transparent transparent transparent;border-style: solid dashed dashed dashed;      }
+    #getRangeNum, #getRangeNum2, #getRangeNum3, #getRangeNum7 {background: #222;color: #fff;display: block;cursor: pointer;border: none;height: 40px;margin: 40px 0 40px 0;padding: 0 25px;}
+    .rangeBox.rangeBoxNone {opacity: 0;width: 0;height: 0;overflow: hidden;}
+</style>
+<body>
+
+    <div class="actual">
+      Value： <span id="rangemin2"></span> | <span id="rangemax2"></span>
+    </div>
+    <div id="container" class="containerWrap" data-min="0" data-max="100"  data-start="0" data-end="50"  >
+        <div class="rangeBox rangeBox1" data-drag></div>
+        <div class="rangeBox rangeBox2" data-drag></div>
+        <div class="rangeSlide"></div>
+    </div>
+    <hr>
+    <br>
+    <div id="container3" class="containerWrap" data-min="0" data-max="10" data-algin="1" data-start="2" data-end="6"  >
+        <div class="rangeBox rangeBox1" data-drag><span class="rangeNumSpan"></span></div>
+        <div class="rangeBox rangeBox2" data-drag><span class="rangeNumSpan"></span></div>
+        <div class="rangeSlide"></div>
+    </div>
+    <hr>
+    <div class="actual">
+      Value： <span id="rangemin1"></span> | <span id="rangemax1"></span>
+    </div>
+    <div id="container4" class="containerWrap" data-min="0" data-max="100" data-algin="1" data-start="0" data-end="30"  >
+        <div class="rangeBox rangeBox1" data-drag></div>
+        <div class="rangeBox rangeBox2" data-drag></div>
+        <div class="rangeSlide"></div>
+    </div>
+    <button id="getRangeNum2">随机改变宽度</button>
+    <hr>
+    <div id="container5" class="containerWrap" data-end="50" data-algin="1" data-single="1"  >
+        <div class="rangeBox rangeBox1 rangeBoxNone" data-drag></div>
+        <div class="rangeBox rangeBox2" data-drag><span class="rangeNumSpan"></span></div>
+        <div class="rangeSlide"></div>
+    </div>
+    <p>注意：（由于并没有写单个的功能，不过可以投机取巧，把第一个按钮通过CSS隐藏起来，把data-start设置为0，并配置data-single="1"即可）</p>
+    <hr>
+    <div id="container6" class="containerWrap"   data-min="0" data-max="100" data-start="20" data-end="50" data-disable="true" >
+        <div class="rangeBox rangeBox1" data-drag></div>
+        <div class="rangeBox rangeBox2" data-drag></div>
+        <div class="rangeSlide"></div>
+    </div>
+    <button id="getRangeNum7">设置可拖动</button>
+</body>
+<script src="dist/iRange.js"></script>
+<script>
+
+////////
+var min =document.querySelector('#rangemin2');
+var max = document.querySelector('#rangemax2');
+var _range = new Range('#container',function(a){
+    min.innerHTML = a[0];
+    max.innerHTML = a[1];
+});
+
+///////////
+var rangeNumSpan = document.querySelectorAll('.rangeNumSpan');
+var _range3 = new Range('#container3',function(a,b){
+    rangeNumSpan[0].innerHTML = b[0]/10;
+    rangeNumSpan[1].innerHTML = b[1]/10;
+});
+//////////
+var min1 =document.querySelector('#rangemin1');
+var max1 = document.querySelector('#rangemax1');
+var _range4 = new Range('#container4',function(a){
+    min1.innerHTML = a[0];
+    max1.innerHTML = a[1];
+});
+getRangeNum2.onclick = function(){
+    container4.style.width = (Math.random() * 200 +100)+'px'
+    _range4.resize()
+};
+//////////
+var _range5 = new Range('#container5',function(a,b){
+    this.querySelector('.rangeNumSpan').innerHTML = b[1];
+});
+_range5.clickOff = true
+
+/////////
+var disableOff = true;
+var _range6 = new Range('#container6');
+getRangeNum7.onclick = function(){
+    if(disableOff){
+        this.innerHTML ="设置不可拖动"
+        container6.setAttribute('data-disable','false')
+    }else{
+        this.innerHTML ="设置可拖动"
+        container6.setAttribute('data-disable','true')
+    }
+    disableOff = !disableOff
+}
+</script>
+</html>

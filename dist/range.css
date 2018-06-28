@@ -1,0 +1,6 @@
+.containerWrap *{box-sizing: border-box;}
+.containerWrap { background-color: #c2d2d4; height: 12px; padding: 0; position: relative; width: 300px; margin: 20px 0; border-radius: 10px; }
+.rangeBox { background-color: #008c7b; text-align: center; width: 30px; height: 30px; position: absolute; top: -9px; z-index: 2; border: 2px solid #f5f5f5; border-radius: 50%; background: #2ab1c1; box-shadow: 0 0 8px rgba(0,0,0,.5); }
+.rangeBox:hover { background: #55939c; }
+.rangeSlide { background-color: #6a7d81; height: 100%; position: relative; border-radius: 10px; }
+.containerWrap[data-disable="true"] .rangeBox{background: #6a7d81}

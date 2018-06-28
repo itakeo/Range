@@ -4,15 +4,16 @@ range.js 区间选择，支持移动端
 ![image](https://github.com/Takeos/Range/blob/master/demo.gif)
 
 
-//data-min 为最小区间
-//data-max 为最大区间
-//data-start 为默认开始值
-//data-end 为默认结束值
-//data-step 为设置步长值，即每次滑动的大小
-//data-disable 为禁止拖动
-//data-algin 设置对齐方式
-//data-single 如果需要单个拖动，需要开启此选项
-//data-blocked 是否开启碰撞判断，开启后，将不会自动改变区间大小，默认false
++ //data-min 为最小区间
++ //data-max 为最大区间
++ //data-start 为默认开始值
++ //data-end 为默认结束值
++ //data-step 为设置步长值，即每次滑动的大小
++ //data-disable 为禁止拖动
++ //data-algin 设置对齐方式
++ //data-single 如果需要单个拖动，需要开启此选项
++ //data-blocked 是否开启碰撞判断，开启后，将不会自动改变区间大小，默认false
+
 >>以下是基本的dom结构。
 ```
 <div class="containerWrap" data-min="0" data-max="300" data-start="30" data-end="130" data-step="10" data-blocked="true" data-disable="true">
@@ -23,7 +24,6 @@ range.js 区间选择，支持移动端
 ```
 
 
-```
 >>以下是基本的css。
 
 ```

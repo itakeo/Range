@@ -59,7 +59,6 @@ window.Range = (function(doc){
                         d1 = Math.abs(_left - t.range1Dom.getAttribute('data-nums')),
                         d2 = Math.abs(_left - t.range2Dom.getAttribute('data-nums'));
                     var _dom = d1 > d2 ? t.range2Dom : t.range1Dom;
-                    document.title = _left
                     if( t.algin) _left = _left > t.w ? t.w : _left;
                     if( t.algin) _left = _left<=0  ? 0 : _left;
                     _dom.style.transform = _dom.style.webkitTransform = 'translate3d('+ (_left - t.knobOffset) +'px,0,0)';

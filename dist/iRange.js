@@ -42,8 +42,8 @@ window.Range = (function(doc){
         bind : function(){
             var t = this;
             var x1=x2 = 0,state,left,target,index = 3;
-            this.dom.addEventListener(events.down,down);
-            doc.addEventListener(events.up,up);
+            this.dom.addEventListener(events.down,down,{ passive: false });
+            doc.addEventListener(events.up,up,{ passive: false });
             function down(ev){
                 ev.preventDefault();
                 if(t.dom.getAttribute('data-disable')==='true') return;
@@ -53,7 +53,7 @@ window.Range = (function(doc){
                 if(target.getAttribute('data-drag') !== null){
                     target.style.zIndex = index++;
                     x1 = e.pageX;
-                    doc.addEventListener(events.move,move);
+                    doc.addEventListener(events.move,move,{ passive: false });
                 }else if(!t.clickOff){
                     var _left = e.pageX - t.dom.getBoundingClientRect().left  - (t.algin ? t.knobWidth/2 : 0),
                         d1 = Math.abs(_left - t.range1Dom.getAttribute('data-nums')),
